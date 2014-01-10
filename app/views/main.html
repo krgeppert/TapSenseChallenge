@@ -1,0 +1,39 @@
+<div class="header">
+	<ul class="nav nav-pills pull-right">
+	</ul>
+	<h3 class="text-muted">TapSense</h3>
+</div>
+
+<div class="jumbotron">
+	<h1>Ghost</h1>
+	<div ng-switch="gameState">
+		<div ng-switch-when="unstarted">
+			<p class="lead">A Word Game	</p>
+			<p><a class="btn btn-lg btn-success"  ng-click="startGame('computer')">Start Game vs Computer</a>
+			<a class="btn btn-lg btn-success"  ng-click="startGame('player')">Start Game vs Player</a></p>
+		</div>
+		<div ng-switch-when="playing">
+			<h4>Player {{activePlayer.name}}'s turn.</h4>
+			<h5>Think of a word starting with '{{lettersToShow}}'</h5>
+			<input type="text" ng-model="submission">
+			<a ng-click="submission && submit(submission); submission = '';" class="btn btn-medium btn-success">Submit</a>
+			<a ng-click="gameOver()" class="btn btn-medium btn-danger">Resign</a>
+		</div>
+		<div ng-switch-when="finished">
+			<h3>Player {{activePlayer.name}} lost.</h3>
+			<div ng-repeat="player in players" class="half-width">
+				<h5><b>Player {{player.name}}'s submissions</b></h5>
+				<ul class="list-group">
+					<li class="list-group-item" ng-repeat="move in player.submissions">{{move}}</li>
+				</ul>
+			</div>
+			<p><a class="btn btn-lg btn-success"  ng-click="startGame('player')">Play Again?</a>
+			<a class="btn btn-lg btn-default"  ng-click="toHome()">Home Screen</a></p>
+		</div>
+	</div>
+</div>
+
+
+<div class="footer">
+	<p>Made by Kyle Geppert</p>
+</div>

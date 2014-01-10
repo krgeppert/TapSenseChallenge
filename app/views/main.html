@@ -24,10 +24,10 @@
 			<div ng-repeat="player in players" class="half-width">
 				<h5><b>Player {{player.name}}'s submissions</b></h5>
 				<ul class="list-group">
-					<li class="list-group-item" ng-repeat="move in player.submissions">{{move}}</li>
+					<li class="list-group-item" ng-repeat="move in player.submissions track by $index">{{move}}</li>
 				</ul>
 			</div>
-			<p><a class="btn btn-lg btn-success"  ng-click="startGame('player')">Play Again?</a>
+			<p><a class="btn btn-lg btn-success"  ng-click="startGame()">Play Again?</a>
 			<a class="btn btn-lg btn-default"  ng-click="toHome()">Home Screen</a></p>
 		</div>
 	</div>

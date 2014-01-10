@@ -9,7 +9,7 @@ angular.module('tapSenseApp')
     var oldType;
     $scope.startGame = function(type){
       oldType = type || oldType;
-      playerOne = {name : 'one', submissions: []};
+      playerOne = {name : 'one', submissions: [], type:oldType};
       playerTwo = {name : 'two', submissions: [], type: oldType};
       $scope.players = [playerOne, playerTwo];
       $scope.lettersToShow = '';
@@ -18,7 +18,10 @@ angular.module('tapSenseApp')
       $scope.gameStarted = true;
     };
     $scope.submit = function(word){
-      word = word.toLowerCase();
+      if (!word){
+        $scope.gameOver();
+        return;
+      }
       $scope.activePlayer.submissions.push(word);
       if (!isGoodWord(word)) {
         $scope.gameOver();
